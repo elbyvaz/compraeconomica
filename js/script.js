@@ -30,71 +30,78 @@ $(".decimal").keypress(function() {	// only numbers, point and comma
 
     let result = document.getElementById('result');
 
-    if ( unity_1 == unity_2 ) {
-        calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
-    } else { // differents unities
+    if (quantity_1 != '' && quantity_2 != '' && unity_1 != '' && unity_2 != '' && price_1 != '' && price_2 != '') {
 
-        if ( unity_1 == 'kg' || unity_1 == 'g' || unity_1 == 'mg' ) { // kg, g, mg
+      if ( unity_1 == unity_2 ) {
+          calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
+      } else { // differents unities
 
-            if ( unity_2 != 'kg' && unity_2 != 'g' && unity_2 != 'mg' ) {// kg, g, mg
+          if ( unity_1 == 'kg' || unity_1 == 'g' || unity_1 == 'mg' ) { // kg, g, mg
 
-              result.style.display = "block";
-              result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
+              if ( unity_2 != 'kg' && unity_2 != 'g' && unity_2 != 'mg' ) {// kg, g, mg
 
-            } else {
+                result.style.display = "block";
+                result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
 
-                calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
+              } else {
 
-            }
+                  calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
 
-        }
+              }
 
-        else if ( unity_1 == 'l' || unity_1 == 'ml' ) { // l, ml
+          }
 
-            if (unity_2 != 'l' && unity_2 != 'ml' ) { // l, ml
+          else if ( unity_1 == 'l' || unity_1 == 'ml' ) { // l, ml
 
-              result.style.display = "block";
-              result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
+              if (unity_2 != 'l' && unity_2 != 'ml' ) { // l, ml
 
-            } else { // tudo ok
+                result.style.display = "block";
+                result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
 
-                calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
+              } else { // tudo ok
 
-            }
+                  calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
 
-        }
+              }
 
-        else if ( unity_1 == 'm' || unity_1 == 'cm' || unity_1 == 'mm' ) { // m, cm, mm
+          }
 
-            if (unity_2 != 'm' && unity_2 != 'cm' && unity_2 != 'mm' ) { // m, cm, mm
+          else if ( unity_1 == 'm' || unity_1 == 'cm' || unity_1 == 'mm' ) { // m, cm, mm
 
-              result.style.display = "block";
-              result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
+              if (unity_2 != 'm' && unity_2 != 'cm' && unity_2 != 'mm' ) { // m, cm, mm
 
-            } else { // tudo ok
+                result.style.display = "block";
+                result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
 
-                calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
+              } else { // tudo ok
 
-            }
+                  calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
 
-        }
+              }
 
-        else if ( unity_1 == 'unidade' ) { // unidade
+          }
 
-            if (unity_2 != 'unidade' ) { // unidade
+          else if ( unity_1 == 'unidade' ) { // unidade
 
-              result.style.display = "block";
-              result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
+              if (unity_2 != 'unidade' ) { // unidade
 
-            } else {
+                result.style.display = "block";
+                result.innerHTML = '<span>Inconsistência.</span> Unidades incompatíveis.';
 
-                calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
+              } else {
 
-            }
+                  calculate(unity_1, quantity_1, price_1, unity_2, quantity_2, price_2);
 
-        }
+              }
 
+          }
+
+      }
+    } else {
+      result.style.display = "block";
+      result.innerHTML = 'Todos os campos são <span>obrigatórios.</span>';
     }
+
 
   });
 
@@ -137,19 +144,19 @@ $(".decimal").keypress(function() {	// only numbers, point and comma
         let percentage = 100 - (price_1 * 100 / economy);
 
         result.style.display = "block";
-        result.innerHTML = 'Comprando o <span>Produto 1</span>, sua economia será de <span>'+ percentage.toFixed(2) +'%</span>';
+        result.innerHTML = 'Comprando o <span>Item 1</span>, sua economia será de <span>'+ percentage.toFixed(2) +'%</span>';
 
     } else if ( economy < price_1 ) {
 
         percentage = 100 - (economy * 100 / price_1);
 
         result.style.display = "block";
-        result.innerHTML = 'Comprando o <span>Produto 2</span>, sua economia será de <span>'+ percentage.toFixed(2) +'%</span>';
+        result.innerHTML = 'Comprando o <span>Item 2</span>, sua economia será de <span>'+ percentage.toFixed(2) +'%</span>';
 
     } else {
 
       result.style.display = "block";
-      result.innerHTML = '<span>Não há economia</span> entre os 2 produtos.';
+      result.innerHTML = '<span>Não há economia</span> entre os 2 itens.';
 
     }
 
